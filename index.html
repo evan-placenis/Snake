@@ -17,6 +17,18 @@
         canvas{
             box-shadow: black 20px 10px 50px;
         }
+        .home{
+            transition-duration: 0.4s;
+            border-radius: 8px;
+            padding: 8px 30px;
+            background-color: white;
+        }
+
+        .home:hover {
+            background-color: #000000;
+            color: white;
+            box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+        }
     </style>
 </head>
 <body>
@@ -24,6 +36,7 @@
     <h1>Snake</h1> 
     <canvas id="game" width = "400" height = "400"></canvas>
     <script src="index.js"></script>
+    <button class ="button home">Home</button>
     
 </body>
 </html>

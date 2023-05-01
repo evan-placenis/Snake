@@ -1,3 +1,18 @@
+
+
+//get refresh rate from previous page
+var urlParams = new URLSearchParams(window.location.search);
+let speed = parseInt(urlParams.get('myVariable'));
+console.log(speed);
+let multiplier = 1;
+if(speed === 55){
+    let multiplier = 2;
+}
+if(speed === 70){
+    let multiplier = 3;
+}
+
+
 const canvas = document.getElementById('game');
 const ctx = canvas.getContext('2d');
 
@@ -10,8 +25,6 @@ class SnakePart{
 const snakeParts = [];
 let tailLen = 10
 
-//refresh rate
-let speed = 35;
 //set #tiles on screen and tile size
 let tileCount = 20;
 let tileSize = canvas.width / tileCount - 2;
@@ -28,8 +41,8 @@ let appleY = 5;
 let score = 0;
 let ateApple = false;
 
-const gulpSound = new Audio("gulp.mp3");
-const death = new Audio("death.mp3");
+const gulpSound = new Audio("Sounds/gulp.mp3");
+const death = new Audio("Sounds/death.mp3");
 function drawGame(){
     changeSnakePosition();
     let result = isGameOver();
@@ -47,7 +60,13 @@ function drawGame(){
     if(ateApple){
         speed += 2;
         ateApple = false;
+        console.log(speed);
     }
+
+    const home = document.getElementsByClassName("button home");
+    home[0].addEventListener("click", function(){
+        window.location.href = "HomeScreen/home.html";
+    });
     
 }
 
@@ -118,7 +137,7 @@ function checkAppleCollision(){
     if((headX > appleX - 1 && headX < appleX + 1) && (headY > appleY - 1 && headY < appleY + 1)){
         appleX = Math.floor(Math.random() * tileCount);
         appleY = Math.floor(Math.random() * tileCount);
-        tailLen += 5;
+        tailLen += 5*multiplier;
         score++;
         gulpSound.play();
         ateApple = true;
@@ -175,3 +194,6 @@ function keyDown(event){
 }
 
 drawGame();
+
+
+
